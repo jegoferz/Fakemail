@@ -8,8 +8,8 @@ from telegram.ext import Application, CommandHandler, ContextTypes, CallbackQuer
 from telegram.constants import ParseMode
 
 # ========= CONFIG ==========
-BOT_TOKEN = os.environ.get("5989609124:AAGEePfgxnqfw-kEYnmBufKL1sO3SE4uj-Q")
-ADMIN_ID = int(os.environ.get("5923090134", "0"))
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+ADMIN_ID = int(os.environ.get("ADMIN_ID", "0"))
 DATA_FILE = "data.json"
 # ===========================
 
@@ -224,8 +224,7 @@ async def cleartrash(update: Update, context: ContextTypes.DEFAULT_TYPE):
     db["user_mails"][str(uid)]["trash"].clear()
     save_db()
     await update.message.reply_text("🗑 Trash cleared successfully.")
-
-# ========= ADMIN COMMANDS =========
+    # ========= ADMIN COMMANDS =========
 async def adminlist(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_user.id != ADMIN_ID:
         return
